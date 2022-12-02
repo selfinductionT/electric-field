@@ -1,0 +1,4 @@
+import numpy as np
+
+def read_input(input_file):
+    with open
