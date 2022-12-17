@@ -1,3 +1,5 @@
+# вместо why должен быть for в calc()
+# неплохо бы обработать то, что две линии рядом могут быть одной
 import numpy as np
 
 k = 8.988e9
@@ -50,7 +52,7 @@ class Field():
 
     def calc(self):
         # надо вайл вместо фор
-        for i in range(1000):
+        for i in range(2000):
             self.step_calc()
 
     def step_calc(self):
