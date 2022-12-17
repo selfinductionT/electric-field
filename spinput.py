@@ -3,25 +3,27 @@ import spcalc
 
 
 def read_input(input_file):
-    points = []
+    """It takes input file and returns a list of particles"""
+    particles = []
     with open(input_file) as f:
         for line in f:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue
             else:
-                data = parse(line)
-                point = spcalc.Point(data)
-                points.append(point)
+                particle = parse(line)
+                particles.append(particle)
+    return particles
 
 
 def parse(line):
+    """Constucts particle from line in input file"""
     line = line.split()
     q = float(line[0])
     r = np.array([
         float(line[1]),
         float(line[2])
     ])
-    return spcalc.Point(q, r)
+    return spcalc.Particle(q, r)
 
 
 if __name__ == "__main__":

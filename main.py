@@ -2,6 +2,12 @@ import spinput
 import spdraw
 import spcalc
 
-inp = spinput.read_input("input.txt")
-out = spcalc.calculate(inp)
-spdraw.draw(out)
+
+def main():
+    inp = spinput.read_input("input.txt")
+    field = spcalc.Field(inp)
+    field.calc()
+    spdraw.draw(field)
+
+
+main()
