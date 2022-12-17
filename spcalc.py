@@ -18,7 +18,7 @@ class Particle():
 
 class Field():
     def __init__(self, particles):
-        self.size = Field.construct_size(particles)
+        self.size, self.maxq = Field.construct_size(particles)
         self.particles = particles
         self.normalised = False
         self.lines = {}
@@ -37,10 +37,12 @@ class Field():
     def construct_size(particles):
         xs = []
         ys = []
+        q = []
         for particle in particles:
             xs.append(particle.r[0])
             ys.append(particle.r[1])
-        return np.array([max(xs), max(ys)])
+            q.append(particle.q)
+        return (np.array([max(xs), max(ys)]), max(q))
 
     def at_point(self, r_point):
         F = np.zeros(2)
@@ -50,7 +52,7 @@ class Field():
 
     def calc(self):
         # TODO доделать
-        for i in range(10):
+        for i in range(1000000):
             self.step_calc()
 
     def step_calc(self):
@@ -59,11 +61,11 @@ class Field():
             for line in self.lines[particle]:
                 point = line[-1]
                 E = self.at_point(point)
-                print(E)
+                alpha = k * self.maxq**2 * 1e6
                 if np.sign(particle.q) == 1:
-                    new_point = point + E / 1000000  # todo 1000 should be var
+                    new_point = point + E / alpha
                 else:
-                    new_point = point - E / 1000000  # todo 1000 should be var
+                    new_point = point - E / alpha
                 line.append(new_point)
 
     def normalise(self):
