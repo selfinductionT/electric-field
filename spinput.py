@@ -3,9 +3,28 @@ import spcalc
 
 
 def read_input(input_file):
-    """It takes input file and returns a list of particles"""
-    particles = []
     with open(input_file) as f:
+        output_file = "output.png"
+        datafile = "data.txt"
+
+        for line in f:
+            if len(line.strip()) == 0 or line[0] == '#':
+                continue
+
+            line = line.split()
+            if line[0] == 'datafile':
+                datafile = line[1]
+            elif line[0] == 'output':
+                output_file = line[1]
+
+            data = read_data(datafile)
+        return (data, output_file)
+
+
+def read_data(datafile):
+    """It takes datafile and returns a list of particles"""
+    particles = []
+    with open(datafile) as f:
         for line in f:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue

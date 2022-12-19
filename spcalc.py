@@ -1,5 +1,7 @@
 # вместо why должен быть for в calc()
 # неплохо бы обработать то, что две линии рядом могут быть одной
+# + сделать регулирование размера окна, output file
+
 import numpy as np
 
 k = 8.988e9
@@ -80,4 +82,4 @@ class Field():
 
 
 if __name__ == "__main__":
-    print("aboba")
+    print("This module is not for direct call!")
